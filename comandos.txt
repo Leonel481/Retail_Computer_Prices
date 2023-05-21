@@ -1,0 +1,16 @@
+git log -p
+git log -p -2
+touch 
+git log --stat
+git show
+git diff --staged # ver cambios no comprometidos
+git rm # elimina
+git mv # Cambia el nomre
+git checkout # regresar a la versión anterior de cambios no comprometidos y no añadidos al area (no git add)
+git reset   # archivos añadidos al área y que no queremos comprometer (git add), (no git commit)--> git reset HEAD file, es como la contraparte de add
+git reset -p #cambios específicos desea reestablecer 
+git commit --amend # cambios no deseados, corregir, para committs locales
+git revert # crea un nuevo commit que es el contrario del commit dado --> git revert HEAD (última confirmación del arbo)
+git revert id del commit # para revertir cambios de confirmación previas a la última identificada por el id del commit
+git branch #mostrar las ramas
+bit branch (new-name) # crear una nueva rama
