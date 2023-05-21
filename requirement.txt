@@ -1,0 +1,10 @@
+#librarys for Flask
+Flask>=2.2
+Flask-Session2>=1.3.1
+werkzeug>=2
+requests>=2,<3
+identity>=0.2,<0.3
+python-dotenv == 0.22
+psycopg2 == 2.9.6
+beautifulsoup4 == 4.12.2
+requests == 2.30.0
