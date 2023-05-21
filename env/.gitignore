@@ -1,0 +1,4 @@
+# created by virtualenv automatically
+# Entorno virtual de Python
+venv/
+pyvenv.cfg

@@ -14,10 +14,6 @@ class WebScrapper:
         self.driver = driver
 
 
-
-
-
-
 #Connect Database Postgersql
 conn = psycopg2.connect(
     host = os.getenv("HOST"),
