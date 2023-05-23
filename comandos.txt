@@ -13,4 +13,14 @@ git commit --amend # cambios no deseados, corregir, para committs locales
 git revert # crea un nuevo commit que es el contrario del commit dado --> git revert HEAD (última confirmación del arbo)
 git revert id del commit # para revertir cambios de confirmación previas a la última identificada por el id del commit
 git branch #mostrar las ramas
-bit branch (new-name) # crear una nueva rama
+git branch (new-name) # crear una nueva rama
+git checkout -b new branch # crear y cambiar de rama
+git branch -d branch_name # elimar la rama branch_name
+git merge branch_name # fusiona la rama secundaria con la maestra
+git checkout master # rama principal
+git merge --abort # desechard la fusión
+git log --graph --oneline # formato del historial de commit por linea
+git clone
+git config --global credential.helper cache
+git push # empujar los cambios
+git pull # recuperar cambios del repositorio
