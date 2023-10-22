@@ -1,6 +1,6 @@
 {"Impacto":{"Principal":"https://www.impacto.com.pe/catalogo?categoria=",
 "Categorias":
-{"Placas Madre":"categoria=Placas%20Madre&c=17","Cooler Refrigeración":"Cooler%20Refrigeración&c=29",
+{"Placas Madre":"Placas%20Madre&c=17","Cooler Refrigeración":"Cooler%20Refrigeración&c=29",
 "Menoria Ram":"Memoria%20Ram&c=14","Cases":"Cases&c=2","Fuentes de Poder":"Fuentes%20de%20Poder&c=8",
 "Procesador":"Procesador&c=19","Almacenanmiento":"Almacenamiento&c=6","Tarjeta de Video":"Tarjeta%20de%20Video&c=25",
 "Monitores":"Monitores&c=16"}},
@@ -10,7 +10,7 @@
 "Menoria Ram":"55-memorias-ram","Cases":"51-cases","Fuentes de Poder":"77-fuentes-de-poder",
 "Procesador":"37-procesadores","Almacenanmiento":"53-almacenamiento","Tarjeta de Video":"32-tarjeta-de-video",
 "Monitores":"8-monitores"}},
-"C&C":{"Principal":"https://cyccomputer.pe/",
+"Cyccomputer":{"Principal":"https://cyccomputer.pe/",
 "Categorias":
 {"Placas Madre":"757-placas-madre","Cooler Refrigeración":"680-sistema-refrigeracion-",
 "Menoria Ram":"744-memorias-ram","Cases":"675-case","Fuentes de Poder":"749-fuentes-de-poder",
