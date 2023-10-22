@@ -1,19 +1,19 @@
 {"Impacto":{"Principal":"https://www.impacto.com.pe/catalogo?categoria=",
 "Categorias":
-{"Placas Madre":"Placas%20Madre&c=17","Cooler Refrigeración":"Cooler%20Refrigeración&c=29",
-"Menoria Ram":"Memoria%20Ram&c=14","Cases":"Cases&c=2","Fuentes de Poder":"Fuentes%20de%20Poder&c=8",
-"Procesador":"Procesador&c=19","Almacenanmiento":"Almacenamiento&c=6","Tarjeta de Video":"Tarjeta%20de%20Video&c=25",
+{"Placa Madre":"Placas%20Madre&c=17","Cooler Refrigeración":"Cooler%20Refrigeración&c=29",
+"Memoria Ram":"Memoria%20Ram&c=14","Case":"Cases&c=2","Fuente de Poder":"Fuentes%20de%20Poder&c=8",
+"Procesador":"Procesador&c=19","Almacenamiento":"Almacenamiento&c=6","Tarjeta de Video":"Tarjeta%20de%20Video&c=25",
 "Monitores":"Monitores&c=16"}},
 "Sercoplus":{"Principal":"https://www.sercoplus.com/",
 "Categorias":
-{"Placas Madre":"34-mainboard","Cooler Refrigeración":"478-refrigeracion-liquida",
-"Menoria Ram":"55-memorias-ram","Cases":"51-cases","Fuentes de Poder":"77-fuentes-de-poder",
-"Procesador":"37-procesadores","Almacenanmiento":"53-almacenamiento","Tarjeta de Video":"32-tarjeta-de-video",
+{"Placa Madre":"34-mainboard","Cooler Refrigeración":"478-refrigeracion-liquida",
+"Memoria Ram":"55-memorias-ram","Case":"51-cases","Fuente de Poder":"77-fuentes-de-poder",
+"Procesador":"37-procesadores","Almacenamiento":"53-almacenamiento","Tarjeta de Video":"32-tarjeta-de-video",
 "Monitores":"8-monitores"}},
 "Cyccomputer":{"Principal":"https://cyccomputer.pe/",
 "Categorias":
-{"Placas Madre":"757-placas-madre","Cooler Refrigeración":"680-sistema-refrigeracion-",
-"Menoria Ram":"744-memorias-ram","Cases":"675-case","Fuentes de Poder":"749-fuentes-de-poder",
-"Procesador":"743-procesadores","Almacenanmiento":"764-hdd-ssd","Tarjeta de Video":"781-tarjetas-graficas",
+{"Placa Madre":"757-placas-madre","Cooler Refrigeración":"680-sistema-refrigeracion-",
+"Memoria Ram":"744-memorias-ram","Case":"675-case","Fuente de Poder":"749-fuentes-de-poder",
+"Procesador":"743-procesadores","Almacenamiento":"764-hdd-ssd","Tarjeta de Video":"781-tarjetas-graficas",
 "Monitores":"755-monitores-"}}
             }

@@ -48,6 +48,7 @@ class Impacto:
         pages = soup.find('ul',class_= 'pagination')
         number_pag = int(pages.find_all('a', class_= 'page-link')[-2].text)
         return number_pag
+    
     def scraper(self, n):
         for i in range(1, n + 1):
             url = self.url_base + self.category + "&page=" + str(i)
