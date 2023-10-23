@@ -210,3 +210,28 @@ class Cyccomputer:
         dataDF = pd.DataFrame(data = data)
         dataDF['Fecha'] = datetime.now().strftime('%d-%m-%Y %H:%M')
         return dataDF
+    
+
+def brand()->list:
+    headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.47'}
+    brand_all = set()
+    url = 'https://www.impacto.com.pe/marcas'
+    r = requests.get(url, headers=headers)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    brands = soup.find_all('div', class_='card border-1 my-2', attrs={"title": True})
+    for brand in brands:
+        brand_all.add(brand['title'].upper())
+    url = 'https://www.sercoplus.com/brands'
+    r = requests.get(url, headers=headers)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    brands = soup.find_all('img', class_='img-thumbnail', attrs={"alt": True})
+    for brand in brands:
+        brand_all.add(brand['alt'].upper())
+    url = 'https://cyccomputer.pe/'
+    r = requests.get(url, headers=headers)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    li_elements = soup.find('li', class_='level-1 parent')
+    brands = li_elements.find_all('li', class_='menu-item item-line')
+    for brand in brands:
+        brand_all.add(brand.find('a').text.upper())
+    return list(brand_all)
