@@ -26,7 +26,7 @@ def normalize_text(s):
 brands = brand()
 
 def look_brand(title, brands):
-    dict_brands = {"CM ": "COOLER MASTER", "HIKSEMI": "HIKSEMI", "RYZEM": "AMD RYZEM", "PROART": "ASUS", "WD": "WESTERN DIGITAL"}
+    dict_brands = {"CM ": "COOLER MASTER", "HIKSEMI": "HIKSEMI", "RYZEN": "AMD", "PROART": "ASUS", "WD": "WESTERN DIGITAL"}
     for brand in brands:
         if brand in title:
             return brand
