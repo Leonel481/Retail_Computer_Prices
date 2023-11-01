@@ -72,6 +72,12 @@ body {
     padding: 10px;
 }
 
+.product-image {
+    width: 10px;
+    height: 10px;
+    object-fit: contain;
+}
+
 .comment {
     margin: 20px 0px;
     border-bottom: #19192E solid 1px;

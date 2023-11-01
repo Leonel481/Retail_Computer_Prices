@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row product-detail-row mt-4 mb-5">
             <div class="col-5">
-                <!-- <img src="{{ product.image.url }}"
+                <img src="{{ product.images }}"
                      class="img-fluid"
                      height=""
-                     alt="{{ product.image.alt }}"> -->
+                     alt="{{ product.images }}">
             </div>
             <div class="col-7">
                 <div class="jumbotron">
@@ -15,7 +15,7 @@
                         <h5 class="card-title">{{ product.prices_usd }} USD</h5>
                     </div>
                     <hr class="my-4">
-                    <p>{{ product.brand.marca }}</p>
+                    <p>{{ product.marca.marca }}</p>
                 </div>
             </div>
         </div>

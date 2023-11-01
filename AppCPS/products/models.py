@@ -2,13 +2,13 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
-class product(models.Model):
+class Product(models.Model):
     id = models.AutoField(primary_key=True)
     titles = models.CharField(max_length = 200)
     links = models.URLField(null=True)
     codes = models.CharField(max_length= 10)
     stocks = models.IntegerField(null=True)
-    ratings = models.PositiveIntegerField(null=True)
+    ratings = models.PositiveIntegerField(null=True) ## agregar blank true
     prices_usd = models.DecimalField(decimal_places= 2, max_digits=10)
     prices_pen = models.DecimalField(decimal_places= 2, max_digits=10)
     images = models.URLField(null=True)

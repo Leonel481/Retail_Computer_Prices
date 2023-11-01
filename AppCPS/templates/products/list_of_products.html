@@ -5,17 +5,21 @@
                 {% for product in products %}
                 <div class="col-3">
                     <div class="card">
-                        <img src="{{ product.image.url }}"
-                             class="card-img-top float-start">
+                        <img src="{{ product.images }}"
+                             class="card-img-top float-start product-image">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.titles }}</h5>
                             <div class="price-container">
-                                <p class="card-title product-price">{{ product.prices_usd }} USD</p>
+                                <p class="card-title product-price">{{ product.prices_usd }} USD <br>
+                                    {{ product.prices_pen }} PEN
+                                   
+                                </p>
                             </div>
                             <p class="card-text">
-                                {{ product.links }}
+                                Marca:  {{ product.marca.marca }} <br>   
+                                Categoría: {{ product.categoria.categoria }}                    
                             </p>
-                            <a class="btn btn-tomato" href="/">go</a>
+                            <a class="btn btn-tomato" href= "{% url 'get_product' id=product.id %}">leer más</a>
                         </div>
                     </div>
                 </div>
