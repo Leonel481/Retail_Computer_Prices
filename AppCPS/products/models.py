@@ -8,7 +8,7 @@ class Product(models.Model):
     links = models.URLField(null=True)
     codes = models.CharField(max_length= 10)
     stocks = models.IntegerField(null=True)
-    ratings = models.PositiveIntegerField(null=True) ## agregar blank true
+    ratings = models.PositiveIntegerField(null=True, blank=True) 
     prices_usd = models.DecimalField(decimal_places= 2, max_digits=10)
     prices_pen = models.DecimalField(decimal_places= 2, max_digits=10)
     images = models.URLField(null=True)
