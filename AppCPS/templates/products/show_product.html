@@ -7,16 +7,28 @@
                      class="img-fluid"
                      height=""
                      alt="{{ product.images }}">
-            </div>
-            <div class="col-7">
                 <div class="jumbotron">
                     <h1 class="display-4">{{ product.titles }}</h1>
                     <div class="price-container">
-                        <h5 class="card-title">{{ product.prices_usd }} USD</h5>
+                        <h5 class="card-title">{{ product.prices_usd }} USD <br>
+                            {{ product.prices_pen }} PEN
+                        </h5>
                     </div>
                     <hr class="my-4">
-                    <p>{{ product.marca.marca }}</p>
+                    <p>Marca: {{ product.marca.marca }} <br>
+                        Stock: {{ product.stocks }}
+                    </p>
+
+                 </div>
+            </div>
+            <div class="col-7">
+                
+                <div id="product-graph">
+
+                    {{ html_graph|safe }}
                 </div>
+                
+                
             </div>
         </div>
     </div>                                                                                 

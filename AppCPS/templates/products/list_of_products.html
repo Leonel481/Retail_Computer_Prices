@@ -17,9 +17,10 @@
                             </div>
                             <p class="card-text">
                                 Marca:  {{ product.marca.marca }} <br>   
-                                Categoría: {{ product.categoria.categoria }}                    
+                                Categoría: {{ product.categoria.categoria }}  <br> 
+                                Stock:   {{ product.stocks }}              
                             </p>
-                            <a class="btn btn-tomato" href= "{% url 'get_product' id=product.id %}">leer más</a>
+                            <a class="btn btn-tomato" href= "{% url 'get_product' codes=product.codes %}">leer más</a>
                         </div>
                     </div>
                 </div>

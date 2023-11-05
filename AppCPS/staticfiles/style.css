@@ -73,9 +73,12 @@ body {
 }
 
 .product-image {
-    width: 10px;
-    height: 10px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .comment {
@@ -117,4 +120,9 @@ body {
 
 .submit-btn {
     text-align: center;
+}
+
+.chart {
+    width: 100%;
+    min-height: 400px;
 }
