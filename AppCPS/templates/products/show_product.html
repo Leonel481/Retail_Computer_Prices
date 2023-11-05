@@ -15,7 +15,9 @@
                         </h5>
                     </div>
                     <hr class="my-4">
-                    <p>Marca: {{ product.marca.marca }} <br>
+                    <p>
+                        Empresa: {{ product.empresa.empresa }} <br>
+                        Marca: {{ product.marca.marca }} <br>
                         Stock: {{ product.stocks }}
                     </p>
 
@@ -26,10 +28,36 @@
                 <div id="product-graph">
 
                     {{ html_graph|safe }}
-                </div>
-                
-                
+                </div>               
             </div>
         </div>
-    </div>                                                                                 
+    </div>
+    {% if perms.products.add_comment %}
+    <div class="row">
+        <div class="col-5 comment-column">
+            <form action="{% url 'add_new_comment' id=product.codes.id %}"
+                method="post"
+                class="post-form">
+                {% csrf_token %}
+                <div class="input-group mb-4">
+                    {{ form.text }}
+                </div>
+            <button type="submit" class="save btn btn-dark">Enviar</button>
+        </form>
+    </div>
+    {% else %}
+    <h1>Inicia sesion para dejar tus comentarios</h1>
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+    <div class="col-7">
+        <h2 class="comment-title text-left">Comentarios</h2>
+        {% for comment in comments %}
+           <div class="comment">
+            <div class="date">{{ comment.created_date}}</div>
+            <strong>{{ comment.author }}</strong>
+            <p> {{comment.text}} </p>
+           </div>
+           {% endfor %}
+    </div>
+</div>
 {% endblock content %}

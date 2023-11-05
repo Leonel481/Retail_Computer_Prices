@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Max
 from django.http import HttpResponse
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required # permissions_required
 import pandas as pd
 import plotly.express as px
 from .models import *
+from .forms import CommentForm
 
 # Create your views here.
 def index(request):
@@ -25,13 +27,13 @@ def index(request):
     return render(request, 'products/list_of_products.html', {'products':products})
 
 
-def get_product(request, codes):
+def get_product(request, id):
     #Obtener el producto
-    product = Product.objects.filter(codes=codes).order_by('-Fecha').first()
+    product = Product.objects.filter(codes=id).order_by('-Fecha').first()
 
 
-    #graficar el historico de precios del producto
-    products_graph = Product.objects.filter(codes=codes).order_by('-Fecha')
+    # graficar el historico de precios del producto
+    products_graph = Product.objects.filter(codes=id).order_by('-Fecha')
     dates = [product.Fecha for product in products_graph]
     prices_usd = [product.prices_usd for product in products_graph]
     fig = px.line(x=dates, y=prices_usd, title='Evolución del precio del producto en el tiempo')
@@ -42,6 +44,28 @@ def get_product(request, codes):
     #Convertir en grafico html
     html_graph = fig.to_html(full_html=False, include_plotlyjs='cdn')
 
+    comments = Comment.objects.filter(product=id)
+    form = CommentForm()
+    return render(request, 'products/show_product.html',
+    {'product':product, 'html_graph': html_graph,
+    'comments': comments, 'form': form})
 
-    return render(request, 'products/show_product.html', {'html_graph': html_graph,'product':product})
+@login_required
+def add_new_comment(request, id):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            product = Codes.objects.get(id=id)
+
+            new_comment = form.save(commit=False)
+            new_comment.author = user
+            new_comment.product = product
+
+            new_comment.save()
+    
+    return redirect('get_product', id)
+
+    # else:
+    #     return redirect('get_product', id)
 
