@@ -20,9 +20,6 @@
                                 Categoría: {{ product.categoria.categoria }}  <br> 
                                 Stock:   {{ product.stocks }}   <br>
                                 Code:    {{ product.codes }} <br>
-                                Code_id:    {{ product.codes.id }} <br>
-                                Code_code:    {{ product.codes.codes }}<br>
-                                product_id:    {{ product.id }}<br>
                             </p>
                             <a class="btn btn-tomato" href="{% url 'get_product' id=product.codes.id %}">Leer más</a>
                         </div>
