@@ -3,10 +3,10 @@ from django.utils import timezone
 
 # Create your models here.
 class Codes(models.Model):
-    codes = models.CharField(max_length= 10) ### CAMBIAR MAX_LENGTH A 20
-    created_date = models.DateTimeField(
-        default=timezone.now
-    )
+    codes = models.CharField(max_length= 30, unique=True) 
+    # created_date = models.DateTimeField(
+    #     default=timezone.now
+    # )
     def __str__(self) -> str:
         return self.codes
 
@@ -33,26 +33,26 @@ class Product(models.Model):
         return f'{self.titles} | {self.categoria} | {self.marca} | {self.empresa}'
 
 class Brand(models.Model):
-    marca = models.CharField(max_length=50)
-    created_date = models.DateTimeField(
-        default=timezone.now
-    )
+    marca = models.CharField(max_length=50, unique=True)
+    # created_date = models.DateTimeField(
+    #     default=timezone.now
+    # )
     def __str__(self) -> str:
         return self.marca
 
 class Category(models.Model):
-    categoria = models.CharField(max_length=50)
-    created_date = models.DateTimeField(
-        default=timezone.now
-    )
+    categoria = models.CharField(max_length=50, unique=True)
+    # created_date = models.DateTimeField(
+    #     default=timezone.now
+    # )
     def __str__(self) -> str:
         return self.categoria
 
 class Company(models.Model):
-    empresa = models.CharField(max_length=50)
-    created_date = models.DateTimeField(
-        default=timezone.now
-    )
+    empresa = models.CharField(max_length=50, unique=True)
+    # created_date = models.DateTimeField(
+    #     default=timezone.now
+    # )
     def __str__(self) -> str:
         return self.empresa
     

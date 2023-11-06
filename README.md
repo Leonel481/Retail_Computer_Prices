@@ -1,6 +1,27 @@
-# Retail_Computer_Prices
-Se obtendrá los precios de componentes de cómputo de las principales tiendas del Perú, para un análisis de precios.
-actualización de prueba
+<h1>Centro de precios de componentes de computadoras</h1>
 
-1. ScrapingPrices: Codigo scraping de diferentes tiendas de componentes de computadoras
-2. APPCPS: Construccion de proyecto a partir de la data scrapeada
+
+La aplicacion se divide en 2 modulos:
+
+
+1. ScrapingPrices: Codigo scraping de diferentes tiendas de componentes de computadoras. (Actualmente se realizan a 3 tiendas)
+
+El codigo se levanto en AWS lambda configurado cloudwatch que se encargar de ejecutar el scraping cada 8 horas. Posteriormente se envia una base de datos mysql de RDS AWS.
+
+2. APPCPS: Construccion de la aplicacion a partir de la data scrapeada
+
+Se desarrollo una appweb que se encarga de mostrar los diferentes productos con sus caracteristicas.
+
+<h3>Pasos para ejecucion local</h3>
+1. Clonar el repositorio
+
+2. Ejecutar los siguientes comandos para (win):
+
+    cd AppCPS
+    python -m venv env
+    /env/Scripts/activate
+    pip install -r requirements.txt
+    python manage.py runserver
+    
+
+

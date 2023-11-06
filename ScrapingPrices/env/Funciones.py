@@ -5,9 +5,10 @@ from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 from datetime import datetime
 from datetime import timedelta
-import os
 import json
+from unicodedata import normalize
 s=HTMLSession()
+
 
 def Iterador(f):
     """Función que permite descargar los datos 15 veces como máximo y los consolida en una tabla total para posteriormente eliminar los duplicados
@@ -27,6 +28,7 @@ def Iterador(f):
         return data
     return Wrapper
 
+
 class Impacto:
     def __init__(self, url_base, category, source):
         self.url_base = url_base
@@ -39,9 +41,11 @@ class Impacto:
         self.list_ratings = []
         self.list_prices_usd = []
         self.list_prices_pen = []
-        self.list_images = []        
+        self.list_images = []  
+
     def __str__(self):
         return f"Extrae informacion de la categoria: {self.category} y la almacenada: {self.source}"
+    
     def pagination(self):
         r = s.get(self.url_base + self.category)
         soup = BeautifulSoup(r.text, 'html.parser')
@@ -69,7 +73,7 @@ class Impacto:
             for detail in details:
                 a = detail.text.strip()
                 list_temp = a.split('\n')
-                b = re.sub(r'[\D]+', '', list_temp[0])
+                b = re.sub(r'[\D]+', '', list_temp[0])+'-IMP'
                 c = re.sub(r'[\D]+', '', list_temp[1])
                 self.list_codes.append(b)
                 self.list_stocks.append(c)
@@ -88,12 +92,15 @@ class Impacto:
             for image in images:
                 i = image.find('img')['src']
                 self.list_images.append(i)
+
             data = {'titles':self.list_titles, 'links':self.list_links, 'codes':self.list_codes, 'stocks':self.list_stocks,
                     'ratings':self.list_ratings, 'prices_usd':self.list_prices_usd, 'prices_pen':self.list_prices_pen, 'images':self.list_images}
+            
         dataDF = pd.DataFrame(data = data)
-        dataDF['Fecha'] = datetime.now().strftime('%d-%m-%Y %H:%M')
+        dataDF['Fecha'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         return dataDF
-    
+
+
 class Sercoplus:
     headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.47'}
     def __init__(self, url_base, category, source):
@@ -140,7 +147,7 @@ class Sercoplus:
                     self.list_images.append(None)
                 third_block = block.find_all('div', class_='product-price-and-shipping d-flex flex-column')
                 stock = third_block[0].find_all('span', class_ = 'price product-price stock-mini')[1]['data-stock']
-                code = third_block[0].find_all('span', class_ = 'price product-price stock-mini')[3].text
+                code = third_block[0].find_all('span', class_ = 'price product-price stock-mini')[3].text + "-SER"
                 price_usd = re.sub(r'[^\d,]', '', third_block[0].find_all('span', class_='price product-price currency2')[0].text).replace(',', '.')
                 price_pen = re.sub(r'[^\d,]', '', third_block[0].find_all('span', class_='price product-price currency2')[1].text).replace(',', '.')
                 self.list_stocks.append(int(stock.strip()))
@@ -150,9 +157,11 @@ class Sercoplus:
             data = {'titles':self.list_titles, 'links':self.list_links, 'codes':self.list_codes, 'stocks':self.list_stocks,
                     'prices_usd':self.list_prices_usd, 'prices_pen':self.list_prices_pen, 'images':self.list_images}
         dataDF = pd.DataFrame(data = data)
-        dataDF['Fecha'] = datetime.now().strftime('%d-%m-%Y %H:%M')
+        dataDF['Fecha'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         return dataDF
-    
+
+
+
 class Cyccomputer:
     headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.47'}
     def __init__(self, url_base, category, source):
@@ -190,7 +199,7 @@ class Cyccomputer:
             soup_product = soup.find('div', class_ = "laberProductGrid laberProducts")
             total_blocks = soup_product.find_all('article', class_ = "product-miniature js-product-miniature")
             for total_block in total_blocks:
-                code = total_block["data-id-product"]
+                code = total_block["data-id-product"]+"-CYC"
                 block = total_block.find('div', class_ = "laberProduct-container")
                 link = block.find('a', class_ = "thumbnail product-thumbnail").get('href')
                 image = block.find('a', class_ = "thumbnail product-thumbnail").find('span', class_ = "cover_image").find('img').get('src')
@@ -208,9 +217,9 @@ class Cyccomputer:
             data = {'titles':self.list_titles, 'links':self.list_links, 'codes':self.list_codes, 'stocks':self.list_stocks,
                     'prices_usd':self.list_prices_usd, 'prices_pen':self.list_prices_pen, 'images':self.list_images}
         dataDF = pd.DataFrame(data = data)
-        dataDF['Fecha'] = datetime.now().strftime('%d-%m-%Y %H:%M')
+        dataDF['Fecha'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         return dataDF
-    
+
 
 def brand()->list:
     headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.47'}
@@ -235,3 +244,20 @@ def brand()->list:
     for brand in brands:
         brand_all.add(brand.find('a').text.upper())
     return list(brand_all)
+
+
+def normalize_text(s):
+    trans_tab = dict.fromkeys(map(ord, u'\u0301\u0308'), None)
+    s_normalize = normalize('NFKC', normalize('NFKD', s).translate(trans_tab))
+    return s_normalize
+
+
+def look_brand(title, brands):
+    dict_brands = {"CM ": "COOLER MASTER", "HIKSEMI": "HIKSEMI", "RYZEN": "AMD", "PROART": "ASUS", "WD": "WESTERN DIGITAL"}
+    for brand in brands:
+        if brand in title:
+            return brand
+        else:
+            for k, v in dict_brands.items():
+                if k in title:
+                    return v
