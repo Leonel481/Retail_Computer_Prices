@@ -23,5 +23,5 @@ Se desarrollo una appweb que se encarga de mostrar los diferentes productos con 
     pip install -r requirements.txt
     python manage.py runserver
     
-
+Nota: Si la pagina de  lista de produictos demora en cargar, se deba posiblemente a que la cantidad de data del modelo el scraping se ejecuta cada 8 horas.
 
