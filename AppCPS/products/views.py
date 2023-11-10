@@ -7,6 +7,7 @@ import pandas as pd
 import plotly.express as px
 from .models import *
 from .forms import CommentForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 def index(request):
@@ -23,8 +24,22 @@ def index(request):
 
 
     products = Product.objects.filter(q_objects)
+    # Número de elementos por página
+    elementos_por_pagina = 32  # Puedes ajustar este número según tus necesidades
+
+    paginator = Paginator(products, elementos_por_pagina)
+    pagina = request.GET.get('pagina')
+
+    try:
+        elementos_paginados = paginator.page(pagina)
+    except PageNotAnInteger:
+        # Si la página no es un número, muestra la primera página
+        elementos_paginados = paginator.page(1)
+    except EmptyPage:
+        # Si la página está fuera de rango, muestra la última página
+        elementos_paginados = paginator.page(paginator.num_pages)
                                     
-    return render(request, 'products/list_of_products.html', {'products':products})
+    return render(request, 'products/list_of_products.html', {'elementos': elementos_paginados})
 
 
 def get_product(request, id):
