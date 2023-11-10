@@ -17,11 +17,11 @@ Se desarrollo una appweb que se encarga de mostrar los diferentes productos con 
 
 2. Ejecutar los siguientes comandos para (win):
 
-    cd AppCPS
-    python -m venv env
-    /env/Scripts/activate
-    pip install -r requirements.txt
-    python manage.py runserver
+    cd AppCPS <br>
+    python -m venv env<br>
+    /env/Scripts/activate<br>
+    pip install -r requirements.txt<br>
+    python manage.py runserver<br>
     
 Nota: Si la pagina de  lista de produictos demora en cargar, se deba posiblemente a que la cantidad de data del modelo el scraping se ejecuta cada 8 horas.
 
