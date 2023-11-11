@@ -1,33 +1,32 @@
 {% extends 'base/base.html' %}
 {% block content %}
-        <div class="container">
-            <div class="row">
-                {% for product in elementos %}
-                <div class="col-3">
-                    <div class="card">
-                        <img src="{{ product.images }}"
-                             class="card-img-top float-start product-image">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ product.titles }}</h5>
-                            <div class="price-container">
-                                <p class="card-title product-price">{{ product.prices_usd }} USD <br>
-                                    {{ product.prices_pen }} PEN
-                                   
-                                </p>
-                            </div>
-                            <p class="card-text">
-                                Marca:  {{ product.marca.marca }} <br>   
-                                Categoría: {{ product.categoria.categoria }}  <br> 
-                                Stock:   {{ product.stocks }}   <br>
-                                Code:    {{ product.codes }} <br>
-                            </p>
-                            <a class="btn btn-tomato" href="{% url 'get_product' id=product.codes.id %}">Leer más</a>
-                        </div>
+<div class="container">
+    <div class="row">
+        {% for product in elementos %}
+        <div class="col-3">
+            <div class="card">
+                <img src="{{ product.images }}" class="card-img-top float-start product-image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.titles }}</h5>
+                    <div class="price-container">
+                        <p class="card-title product-price">
+                            {{ product.prices_usd|floatformat:2 }} USD <br>
+                            {{ product.prices_pen|floatformat:2 }} PEN
+                        </p>
                     </div>
+                    <p class="card-text">
+                        Marca:  {{ product.marca.marca }} <br>
+                        Categoría: {{ product.categoria.categoria }}  <br>
+                        Stock:   {{ product.stocks }}   <br>
+                        Code:    {{ product.codes }} <br>
+                    </p>
+                    <a class="btn btn-tomato" href="{% url 'get_product' id=product.codes.id %}">Leer más</a>
                 </div>
-                {% endfor %}
             </div>
         </div>
+        {% endfor %}
+    </div>
+</div>
 <!-- Muestra los enlaces de paginación -->
 <div class="pagination">
     <span class="step-links">
