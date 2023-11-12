@@ -2,28 +2,43 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        <div class="col-12">
+            <form method="get" action="{% url 'index' %}">
+                <label for="categoria">Buscar por Categoría:</label>
+                <select name="categoria" id="categoria">
+                    <option value="" selected>Todas las categorías</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.categoria }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
         {% for product in elementos %}
-        <div class="col-3">
-            <div class="card">
-                <img src="{{ product.images }}" class="card-img-top float-start product-image">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.titles }}</h5>
-                    <div class="price-container">
-                        <p class="card-title product-price">
-                            {{ product.prices_usd|floatformat:2 }} USD <br>
-                            {{ product.prices_pen|floatformat:2 }} PEN
+            <div class="col-3">
+                <div class="card">
+                    <!-- Resto del código para mostrar productos -->
+                    <img src="{{ product.images }}" class="card-img-top float-start product-image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.titles }}</h5>
+                        <div class="price-container">
+                            <p class="card-title product-price">
+                                {{ product.prices_usd|floatformat:2 }} USD <br>
+                                {{ product.prices_pen|floatformat:2 }} PEN
+                            </p>
+                        </div>
+                        <p class="card-text">
+                            Marca:  {{ product.marca.marca }} <br>
+                            Categoría: {{ product.categoria.categoria }}  <br>
+                            Stock:   {{ product.stocks }}   <br>
+                            Code:    {{ product.codes }} <br>
                         </p>
+                        <a class="btn btn-tomato" href="{% url 'get_product' id=product.codes.id %}">Leer más</a>
                     </div>
-                    <p class="card-text">
-                        Marca:  {{ product.marca.marca }} <br>
-                        Categoría: {{ product.categoria.categoria }}  <br>
-                        Stock:   {{ product.stocks }}   <br>
-                        Code:    {{ product.codes }} <br>
-                    </p>
-                    <a class="btn btn-tomato" href="{% url 'get_product' id=product.codes.id %}">Leer más</a>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>
@@ -31,8 +46,8 @@
 <div class="pagination">
     <span class="step-links">
         {% if elementos.has_previous %}
-            <a href="?pagina=1">Primera</a>
-            <a href="?pagina={{ elementos.previous_page_number }}">Anterior</a>
+            <a href="?pagina=1&categoria={{ request.GET.categoria }}">Primera</a>
+            <a href="?pagina={{ elementos.previous_page_number }}&categoria={{ request.GET.categoria }}">Anterior</a>
         {% endif %}
 
         <span class="current">
@@ -40,8 +55,8 @@
         </span>
 
         {% if elementos.has_next %}
-            <a href="?pagina={{ elementos.next_page_number }}">Siguiente</a>
-            <a href="?pagina={{ elementos.paginator.num_pages }}">Última</a>
+            <a href="?pagina={{ elementos.next_page_number }}&categoria={{ request.GET.categoria }}">Siguiente</a>
+            <a href="?pagina={{ elementos.paginator.num_pages }}&categoria={{ request.GET.categoria }}">Última</a>
         {% endif %}
     </span>
 </div>

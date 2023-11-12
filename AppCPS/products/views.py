@@ -24,10 +24,23 @@ def index(request):
 
 
     products = Product.objects.filter(q_objects)
+
+    # Buscador por categoria
+    if 'categoria' in request.GET:
+        categoria_id = request.GET['categoria']
+        if categoria_id == '':
+            products_f = products
+        else:
+            products_f = products.filter(categoria=categoria_id)
+    else:
+        products_f = products
+
+    categories = Category.objects.all()
+
     # Número de elementos por página
     elementos_por_pagina = 32  # Puedes ajustar este número según tus necesidades
 
-    paginator = Paginator(products, elementos_por_pagina)
+    paginator = Paginator(products_f, elementos_por_pagina)
     pagina = request.GET.get('pagina')
 
     try:
@@ -39,7 +52,9 @@ def index(request):
         # Si la página está fuera de rango, muestra la última página
         elementos_paginados = paginator.page(paginator.num_pages)
                                     
-    return render(request, 'products/list_of_products.html', {'elementos': elementos_paginados})
+    return render(request, 'products/list_of_products.html', {'elementos': elementos_paginados,
+                                                              'categories': categories})
+
 
 
 def get_product(request, id):
