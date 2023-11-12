@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.db.models import Max
+from django.db.models import Max, Prefetch
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required # permissions_required
@@ -22,6 +22,7 @@ def index(request):
     for codes, Fecha in max_dates:
         q_objects |= Q(codes=codes, Fecha=Fecha)
 
+    products = Product.objects.filter(q_objects).order_by('titles') 
 
     products = Product.objects.filter(q_objects)
 
@@ -99,3 +100,9 @@ def add_new_comment(request, id):
     # else:
     #     return redirect('get_product', id)
 
+
+def buscar_producto(request):
+    
+    q = request.GET.get('q', '')
+    productos_buscados = Product.objects.filter(Q(titles__icontains=q))
+    return render(request, 'products/busqueda.html', {'productos_buscados': productos_buscados})

@@ -3,7 +3,8 @@ from django.utils import timezone
 
 # Create your models here.
 class Codes(models.Model):
-    codes = models.CharField(max_length= 30, unique=True) 
+    codes = models.CharField(max_length= 30, unique=True)
+    # Fecha_max = models.DateTimeField(null=True, blank=True) 
     # created_date = models.DateTimeField(
     #     default=timezone.now
     # )
