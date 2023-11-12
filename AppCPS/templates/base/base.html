@@ -16,6 +16,12 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
+
+                <form action="{% url 'buscar_producto' %}" method="GET">
+                    <input name="q" placeholder="Escribe el nombre de un producto" id="buscador">
+                    <input type="submit" value="Buscar">
+                 </form>
+
                 <a class="navbar-brand" href="{% url 'index' %}">TechFetch-M</a>
                 <ul class="navbar-nav">
                 {% if user.is_authenticated %}
